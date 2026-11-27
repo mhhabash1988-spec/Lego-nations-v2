@@ -2,12 +2,12 @@ const TEAMS = [
   {id:1,name:"فلسطين",flag:"🇵🇸",color:"#23c98b"},
   {id:2,name:"إسرائيل",flag:"🇮🇱",color:"#659cff"},
   {id:3,name:"الأردن",flag:"🇯🇴",color:"#ff6969"},
-  {id:4,name:"السعودية",flag:"🇸🇦",color:"#91d35e"},
+  {id:4,name:"السعودية",flag:"#91d35e",color:"#91d35e"},
   {id:5,name:"سوريا",flag:"🇸🇾",color:"#ffc45e"},
   {id:6,name:"مصر",flag:"🇪🇬",color:"#ff9365"},
   {id:7,name:"الإمارات",flag:"🇦🇪",color:"#bd91ff"}
 ];
-const bases=[[0,-5],[4,-3],[5,2],[1,5],[-4,4],[-5,-1],[0,0]];
+const bases=[[0,-5],[4,-4],[5,0],[0,5],[-4,4],[-5,0],[0,0]];
 const key=(q,r)=>q+","+r, cells=[], cellMap=new Map();
 const dirs=[[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
 const ammo=Array(8).fill(0), active=new Set(); let tickNo=0;
@@ -16,7 +16,11 @@ function reset(){
  for(let q=-5;q<=5;q++)for(let r=-5;r<=5;r++)if(Math.max(Math.abs(q),Math.abs(r),Math.abs(q+r))<=5){
   const c={q,r,owner:0,hp:0,base:false};cells.push(c);cellMap.set(key(q,r),c);
  }
- bases.forEach(([q,r],i)=>{const c=cellMap.get(key(q,r));c.owner=i+1;c.hp=5;c.base=true});
+ bases.forEach(([q,r],i)=>{
+  const c=cellMap.get(key(q,r));
+  if(!c)throw new Error("Invalid base coordinate: "+q+","+r);
+  c.owner=i+1;c.hp=5;c.base=true;
+ });
  ammo.fill(0);active.clear();tickNo=0;
 }
 function neighbors(c){return dirs.map(([a,b])=>cellMap.get(key(c.q+a,c.r+b))).filter(Boolean)}
