@@ -2,7 +2,7 @@ const TEAMS = [
   {id:1,name:"فلسطين",flag:"🇵🇸",color:"#23c98b"},
   {id:2,name:"إسرائيل",flag:"🇮🇱",color:"#659cff"},
   {id:3,name:"الأردن",flag:"🇯🇴",color:"#ff6969"},
-  {id:4,name:"السعودية",flag:"#91d35e",color:"#91d35e"},
+  {id:4,name:"السعودية",flag:"🇸🇦",color:"#91d35e"},
   {id:5,name:"سوريا",flag:"🇸🇾",color:"#ffc45e"},
   {id:6,name:"مصر",flag:"🇪🇬",color:"#ff9365"},
   {id:7,name:"الإمارات",flag:"🇦🇪",color:"#bd91ff"}
